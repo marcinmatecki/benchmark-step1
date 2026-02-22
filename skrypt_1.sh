@@ -31,17 +31,22 @@ echo "HDMapping -> ROS1"
   "$OUTPUT_DIR" \
   "hdmapping-to-ros1"
 
-echo "HDMapping -> ROS2"
-"$CONVERSION_SCRIPT" \
-  "$DATASET_PATH" \
-  "$OUTPUT_DIR" \
-  "hdmapping-to-ros2"
-
 echo "ROS1 -> aggregated pointcloud (-pc)"
 "$ROS1_PC_SCRIPT" \
   "$OUTPUT_DIR/$DATASET_NAME" \
   "$OUTPUT_DIR"
 
+ORIGINAL_FILE="$OUTPUT_DIR/$DATASET_NAME"
+NEW_FILE="${ORIGINAL_FILE%.bag}"
+
+mv "$ORIGINAL_FILE"-pc.bag "$NEW_FILE"-pc
+DATASET_NAME="$(basename "$NEW_FILE")"
+
+echo "HDMapping -> ROS2"
+"$CONVERSION_SCRIPT" \
+  "$DATASET_PATH" \
+  "$OUTPUT_DIR" \
+  "hdmapping-to-ros2"
 
 echo "ROS1 -> ROS2"
 "$CONVERSION_SCRIPT" \
