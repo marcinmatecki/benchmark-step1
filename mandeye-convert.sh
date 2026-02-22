@@ -70,7 +70,7 @@ ros1-to-ros2)
 
     SRC_BAG="$BAG_OUTPUT_CONTAINER/${DATASET_NAME}"
 
-    DST_FOLDER="$BAG_OUTPUT_CONTAINER/${DATASET_NAME}-lidar"
+    DST_FOLDER="$BAG_OUTPUT_CONTAINER/${DATASET_NAME}-ros2-lidar"
 
     RUN_CMD="rosbags-convert --src $SRC_BAG --dst $DST_FOLDER"
 
